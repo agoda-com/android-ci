@@ -9,7 +9,6 @@ ARG OPEN_JDK_MD5='9d711fdeb9176a96bae0ba276f3f3695'
 
 ENV LANG='en_US.UTF-8' \
     LANGUAGE='en_US:en' \
-    LC_ALL='en_US.UTF-8' \
     JAVA_HOME=/opt/java/openjdk \
     JRE_HOME=/opt/java/openjdk/jre \
     ANDROID_HOME=/opt/android-sdk-linux \
