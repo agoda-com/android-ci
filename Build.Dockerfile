@@ -45,7 +45,8 @@ RUN set -eux; \
 COPY licenses/android-sdk-license /opt/android-sdk-linux/licenses/android-sdk-license
 
 # Install Android SDK
-RUN curl -sSL https://dl.google.com/android/repository/commandlinetools-linux-${ANDROID_SDK_TOOLS}_latest.zip > /tmp/android-sdk-linux.zip \
+RUN env \
+    && curl -sSL https://dl.google.com/android/repository/commandlinetools-linux-${ANDROID_SDK_TOOLS}_latest.zip > /tmp/android-sdk-linux.zip \
     && unzip /tmp/android-sdk-linux.zip -d /opt/android-sdk-linux/ \
     && rm /tmp/android-sdk-linux.zip \
     \
