@@ -8,12 +8,9 @@ ARG OPEN_JDK_DOWNLOAD_URL='https://corretto.aws/downloads/resources/8.292.10.1/a
 ARG OPEN_JDK_MD5='9d711fdeb9176a96bae0ba276f3f3695'
 
 ENV LANG=C.UTF-8 \
-    \
     JAVA_HOME=/opt/java/openjdk \
     JRE_HOME=/opt/java/openjdk/jre \
-    \
     ANDROID_HOME=/opt/android-sdk-linux \
-    \
     GRADLE_HOME="/opt/gradle-${GRADLE_VERSION}/bin" \
     PATH="/opt/gradle-${GRADLE_VERSION}/bin:/opt/android-sdk-linux/tools:/opt/android-sdk-linux/platform-tools:/opt/android-sdk-linux/tools/bin:/opt/android-sdk-linux/emulator:/opt/java/openjdk/bin:$PATH"
 
