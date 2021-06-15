@@ -14,7 +14,8 @@ ENV KEYSTORE=/opt/keychain/release-key.keystore \
     LANGUAGE='en_US:en' \
     JAVA_HOME=/opt/java/openjdk \
     JRE_HOME=/opt/java/openjdk/jre \
-    ANDROID_HOME=/opt/android-sdk-linux
+    ANDROID_HOME=/opt/android-sdk-linux \
+    PATH="/opt/android-sdk-linux/tools:/opt/android-sdk-linux/platform-tools:/opt/android-sdk-linux/tools/bin:/opt/android-sdk-linux/emulator:/opt/java/openjdk/bin:$PATH"
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
