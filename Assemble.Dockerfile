@@ -25,13 +25,12 @@ RUN apt-get update \
     && rm -r /var/lib/apt/lists/*
 
 # Install Ruby and RVM
-RUN gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB && \
-    curl -sSL https://get.rvm.io | grep -v __rvm_print_headline | bash -s stable --ruby=ruby-2.7.2 && \
+RUN curl -sSL https://get.rvm.io | grep -v __rvm_print_headline | bash -s stable --ruby=ruby-2.7.2 && \
     echo "source /usr/local/rvm/scripts/rvm" >> ~/.bashrc && \
     # Install gems \
     /bin/bash -l -c "gem install bundler liquid-cli:0.0.1 stf-client:0.3.0-rc.12 --no-document" && \
     /bin/bash -l -c "gem update --system"
-    
+
 # Install OpenJDK
 RUN set -eux; \
     curl -LfsSo /tmp/openjdk.tar.gz ${OPEN_JDK_DOWNLOAD_URL}; \
