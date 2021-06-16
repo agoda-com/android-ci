@@ -6,11 +6,7 @@ ARG ANDROID_SDK_TOOLS='6200805'
 ARG OPEN_JDK_DOWNLOAD_URL='https://corretto.aws/downloads/resources/8.292.10.1/amazon-corretto-8.292.10.1-linux-x64.tar.gz'
 ARG OPEN_JDK_MD5='9d711fdeb9176a96bae0ba276f3f3695'
 
-ENV KEYSTORE=/opt/keychain/release-key.keystore \
-    KEYSTORE_PASSWORD=DX9ajGZ+!zM&HPEs2qxpze$%6G#d4wVD \
-    KEY_ALIAS=agoda \
-    KEY_PASSWORD=DX9ajGZ+!zM&HPEs2qxpze$%6G#d4wVD \
-    LANG='en_US.UTF-8' \
+ENV LANG='en_US.UTF-8' \
     LANGUAGE='en_US:en' \
     JAVA_HOME=/opt/java/openjdk \
     JRE_HOME=/opt/java/openjdk/jre \
