@@ -1,9 +1,9 @@
 FROM ubuntu:18.04
 
+ARG RECV_KEYS=''
 ARG ANDROID_COMPILE_SDK='29'
 ARG ANDROID_BUILD_TOOLS='28.0.3'
 ARG ANDROID_SDK_TOOLS='6200805'
-ARG GRADLE_VERSION='5.6.4'
 ARG OPEN_JDK_DOWNLOAD_URL='https://corretto.aws/downloads/resources/8.292.10.1/amazon-corretto-8.292.10.1-linux-x64.tar.gz'
 ARG OPEN_JDK_MD5='9d711fdeb9176a96bae0ba276f3f3695'
 
@@ -12,8 +12,7 @@ ENV LANG='en_US.UTF-8' \
     JAVA_HOME=/opt/java/openjdk \
     JRE_HOME=/opt/java/openjdk/jre \
     ANDROID_HOME=/opt/android-sdk-linux \
-    GRADLE_HOME="/opt/gradle-${GRADLE_VERSION}/bin" \
-    PATH="/opt/gradle-${GRADLE_VERSION}/bin:/opt/android-sdk-linux/tools:/opt/android-sdk-linux/platform-tools:/opt/android-sdk-linux/tools/bin:/opt/android-sdk-linux/emulator:/opt/java/openjdk/bin:$PATH"
+    PATH="/opt/android-sdk-linux/tools:/opt/android-sdk-linux/platform-tools:/opt/android-sdk-linux/tools/bin:/opt/android-sdk-linux/emulator:/opt/java/openjdk/bin:$PATH"
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
@@ -26,6 +25,14 @@ RUN apt-get update \
     && git lfs install \
     \
     && rm -r /var/lib/apt/lists/*
+
+# Install Ruby and RVM
+ RUN gpg --keyserver hkp://keys.gnupg.net:80 --keyserver-options http-proxy=${http_proxy} --recv-keys=${RECV_KEYS} && \
+     curl -sSL https://get.rvm.io | grep -v __rvm_print_headline | bash -s stable --ruby=ruby-2.7.2 && \
+     echo "source /usr/local/rvm/scripts/rvm" >> ~/.bashrc && \
+     # Install gems \
+     /bin/bash -l -c "gem install bundler liquid-cli:0.0.1 stf-client:0.3.0-rc.12 --no-document" && \
+     /bin/bash -l -c "gem update --system"
 
 # Install OpenJDK
 RUN set -eux; \
@@ -58,10 +65,3 @@ RUN curl -sSL https://dl.google.com/android/repository/commandlinetools-linux-${
     \
     && rm -r ${ANDROID_HOME}/emulator \
     && unset ANDROID_NDK_HOME
-
-# Install Gradle
-RUN cd /opt \
-    && curl -fl -sSL https://downloads.gradle.org/distributions/gradle-${GRADLE_VERSION}-all.zip -o gradle-all.zip \
-    && unzip -q "gradle-all.zip" \
-    && rm "gradle-all.zip" \
-    && mkdir -p ~/.gradle
