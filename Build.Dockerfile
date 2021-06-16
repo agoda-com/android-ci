@@ -27,7 +27,7 @@ RUN apt-get update \
     && rm -r /var/lib/apt/lists/*
 
 # Install Ruby and RVM
-RUN gpg --keyserver hkp://keys.gnupg.net:80 --keyserver-options http-proxy=${http_proxy} --recv-keys ${RECV_KEYS} && \
+RUN gpg --keyserver hkp://keys.gnupg.net:80 --keyserver-options http-proxy=${http_proxy} --recv-keys=${RECV_KEYS} && \
     curl -sSL https://get.rvm.io | grep -v __rvm_print_headline | bash -s stable --ruby=ruby-2.7.2 && \
     echo "source /usr/local/rvm/scripts/rvm" >> ~/.bashrc && \
     # Install gems \
