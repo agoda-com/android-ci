@@ -1,8 +1,6 @@
-FROM alpine:3.4
-
+FROM ubuntu:18.04
 
 ARG RECV_KEYS=''
-
 
 ENV LANG='en_US.UTF-8' \
     LANGUAGE='en_US:en'
