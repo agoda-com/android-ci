@@ -11,6 +11,8 @@ RUN apt-get update \
             curl \
             ca-certificates \
             unzip \
+            gnupg \
+            dirmngr \
     \
     && rm -r /var/lib/apt/lists/*
 
