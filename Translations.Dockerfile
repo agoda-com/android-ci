@@ -5,5 +5,6 @@ RUN apk update \
             build-base \
             curl \
             git \
+            git-lfs \
             python2 \
     && rm -Rf /var/cache/apk/*
