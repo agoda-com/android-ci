@@ -6,12 +6,12 @@ ARG ANDROID_SDK_TOOLS='6200805'
 ARG OPEN_JDK_DOWNLOAD_URL='https://corretto.aws/downloads/resources/8.292.10.1/amazon-corretto-8.292.10.1-linux-x64.tar.gz'
 ARG OPEN_JDK_MD5='9d711fdeb9176a96bae0ba276f3f3695'
 
-ENV LANG='en_US.UTF-8' \
-    LANGUAGE='en_US:en' \
-    JAVA_HOME=/opt/java/openjdk \
-    JRE_HOME=/opt/java/openjdk/jre \
-    ANDROID_HOME=/opt/android-sdk-linux \
-    PATH="/opt/android-sdk-linux/tools:/opt/android-sdk-linux/platform-tools:/opt/android-sdk-linux/tools/bin:/opt/android-sdk-linux/emulator:/opt/java/openjdk/bin:$PATH"
+ENV LANG='en_US.UTF-8'
+ENV LANGUAGE='en_US:en'
+ENV JAVA_HOME=/opt/java/openjdk
+ENV JRE_HOME=/opt/java/openjdk/jre
+ENV ANDROID_HOME=/opt/android-sdk-linux
+ENV PATH="/opt/android-sdk-linux/tools:/opt/android-sdk-linux/platform-tools:/opt/android-sdk-linux/tools/bin:/opt/java/openjdk/bin:$PATH"
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
