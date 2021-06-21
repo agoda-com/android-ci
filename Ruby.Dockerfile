@@ -8,4 +8,8 @@ RUN apk update \
             git-lfs \
             python2 \
     && apk add --no-cache --upgrade grep \
-    && rm -Rf /var/cache/apk/*
+    && rm -Rf /var/cache/apk/* \
+    && gem install --no-document\
+            bundler \
+            liquid-cli:0.0.1  \
+    && gem update --system
