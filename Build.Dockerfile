@@ -46,7 +46,6 @@ RUN curl -sSL https://dl.google.com/android/repository/commandlinetools-linux-${
     && rm /tmp/android-sdk-linux.zip \
     \
     && yes | sdkmanager --no_https --licenses --sdk_root=${ANDROID_HOME} \
-    \
     && sdkmanager --sdk_root=${ANDROID_HOME} --verbose tools platform-tools \
       "platforms;android-${ANDROID_COMPILE_SDK}" \
       "build-tools;${ANDROID_BUILD_TOOLS}" \
