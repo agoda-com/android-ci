@@ -7,6 +7,7 @@ RUN apk update \
             git \
             git-lfs \
             python2 \
+            openssh \
     && apk add --no-cache --upgrade grep \
     && gem install --no-document \
             bundler \
