@@ -15,7 +15,7 @@ RUN apk update \
             octokit \
     && gem update --system
 
-#Install codecoach
+# Install codecoach
 RUN apk add --no-cache --update npm \
     && npm i -g codecoach \
     && rm -Rf /var/cache/apk/*
