@@ -19,6 +19,3 @@ RUN mkdir /allure \
     && curl -sSL https://repo.maven.apache.org/maven2/io/qameta/allure/allure-commandline/2.8.1/allure-commandline-2.8.1.tgz -o allure-commandline.tgz \
     && tar --strip-components 1 -xvf allure-commandline.tgz -C /allure \
     && rm allure-commandline.tgz
-
-# Set up insecure default key
-COPY adb/adbkey adb/adbkey.pub /root/.android/
