@@ -7,10 +7,15 @@ RUN apk update \
             git \
             git-lfs \
             python2 \
+            openssh \
     && apk add --no-cache --upgrade grep \
-    && rm -Rf /var/cache/apk/* \
     && gem install --no-document \
             bundler \
             liquid-cli:0.0.1  \
             octokit \
     && gem update --system
+
+# Install codecoach
+RUN apk add --no-cache --update npm \
+    && npm i -g codecoach \
+    && rm -Rf /var/cache/apk/*
