@@ -8,6 +8,7 @@ ARG OPEN_JDK_MD5='9d711fdeb9176a96bae0ba276f3f3695'
 
 ENV LANG='en_US.UTF-8'
 ENV LANGUAGE='en_US:en'
+ENV LC_ALL='en_US.UTF-8'
 ENV JAVA_HOME=/opt/java/openjdk
 ENV JRE_HOME=/opt/java/openjdk/jre
 ENV ANDROID_HOME=/opt/android-sdk-linux
@@ -19,7 +20,11 @@ RUN apt-get update \
             ca-certificates \
             git \
             git-extras \
+            locales \
             unzip \
+    \
+    && echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen \
+    && locale-gen en_US.UTF-8 \
     \
     && curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | bash \
     && apt-get install -yq --no-install-recommends git-lfs \
