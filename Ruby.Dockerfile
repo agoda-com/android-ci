@@ -1,4 +1,4 @@
-FROM ruby:2.7.4-alpine3.14
+FROM ruby:2.7.3-alpine3.13
 
 # Install necessary packages
 RUN apk update \
