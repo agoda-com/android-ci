@@ -9,10 +9,13 @@ RUN apk update \
             git-lfs \
             jq \
             python2 \
-            py2-yaml \
+            py-pip \
     \
     && apk add --no-cache --upgrade grep \
     && rm -Rf /var/cache/apk/*
+
+# Preinstall python packages
+RUN pip install pyyaml
 
 # Preinstall gems
 RUN gem install --no-document \
