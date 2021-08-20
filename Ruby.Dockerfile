@@ -1,5 +1,6 @@
 FROM ruby:2.7.4-alpine3.14
 
+# Install necessary packages
 RUN apk update \
     && apk add bash \
             build-base \
@@ -10,9 +11,10 @@ RUN apk update \
             python2 \
     \
     && apk add --no-cache --upgrade grep \
-    && rm -Rf /var/cache/apk/* \
-    \
-    && gem install --no-document \
+    && rm -Rf /var/cache/apk/*
+
+# Preinstall gems
+RUN gem install --no-document \
             bundler \
             claide \
             executable-hooks \
