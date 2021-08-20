@@ -10,30 +10,17 @@ FROM $BUILD_IMAGE
 
 COPY --from=rubybuild $RUBY_PATH $RUBY_PATH
 
-# Install STF-Client
 COPY stf-client-0.3.1.pre.rc.1.gem /tmp/stf.gem
 
 RUN gem install /tmp/stf.gem \
     && rm -f /tmp/stf.gem \
     && gem update --system
 
-# Install Cron for device pinging
-RUN apt-get update \
-    && apt-get install -y --no-install-recommends \
-            cron \
-    \
-    && rm -r /var/lib/apt/lists/* \
-    \
-    && (find /etc/cron.* -type f | grep -v .placeholder | xargs rm -f)
-
-COPY ./ping-device.sh /ping-device.sh
-COPY ./ping-device-crontab /etc/cron.d/ping-device
-
-# Install Allure
 ENV PATH="/allure/bin:$PATH"
 ENV ALLURE_CONFIG="/allure-config/allure.properties"
 ENV ALLURE_NO_ANALYTICS=1
 
+# Install Allure
 RUN mkdir /allure \
     && mkdir /allure-config \
     && curl -sSL https://repo.maven.apache.org/maven2/io/qameta/allure/allure-commandline/2.8.1/allure-commandline-2.8.1.tgz -o allure-commandline.tgz \
