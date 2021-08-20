@@ -9,6 +9,7 @@ RUN apk update \
             git-lfs \
             jq \
             python2 \
+            py-yaml \
     \
     && apk add --no-cache --upgrade grep \
     && rm -Rf /var/cache/apk/*
