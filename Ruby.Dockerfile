@@ -12,6 +12,7 @@ RUN apk update \
     && rm -Rf /var/cache/apk/* \
     && gem install --no-document \
             bundler \
+            executable-hooks \
             liquid-cli:0.0.1  \
             octokit \
     && gem update --system
