@@ -19,7 +19,7 @@ RUN gem install /tmp/stf.gem \
 
 # Install Python2
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends python-minimal
+    && apt-get install -y --no-install-recommends python
 
 # Install Allure
 ENV PATH="/allure/bin:$PATH"
