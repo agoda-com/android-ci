@@ -8,10 +8,9 @@ RUN apk update \
             git \
             git-lfs \
             jq \
+            openssh \
             python2 \
-    \
-    && apk add --no-cache --upgrade grep \
-    && rm -Rf /var/cache/apk/*
+    && apk add --no-cache --upgrade grep
 
 # Preinstall gems
 RUN gem install --no-document \
@@ -21,3 +20,8 @@ RUN gem install --no-document \
             liquid-cli:0.0.1  \
             octokit \
     && gem update --system
+
+# Install codecoach
+RUN apk add --no-cache --update npm \
+    && npm i -g codecoach \
+    && rm -Rf /var/cache/apk/*
