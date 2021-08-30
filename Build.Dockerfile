@@ -27,6 +27,10 @@ RUN apt-get update \
     \
     && rm -r /var/lib/apt/lists/*
 
+# Add gitlab-runner user (UID/GID = 996/996 as per host machine)
+RUN groupadd -g 996 gitlab-runner \
+    && useradd --uid 996 --gid 996 --create-home --shell /bin/bash gitlab-runner
+
 # Install OpenJDK
 RUN set -eux; \
     curl -LfsSo /tmp/openjdk.tar.gz ${OPEN_JDK_DOWNLOAD_URL}; \
