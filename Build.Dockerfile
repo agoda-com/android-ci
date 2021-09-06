@@ -1,17 +1,16 @@
 FROM ubuntu:18.04
 
-ARG ANDROID_COMPILE_SDK='29'
-ARG ANDROID_BUILD_TOOLS='28.0.3'
-ARG ANDROID_SDK_TOOLS='6200805'
-ARG OPEN_JDK_DOWNLOAD_URL='https://corretto.aws/downloads/resources/8.292.10.1/amazon-corretto-8.292.10.1-linux-x64.tar.gz'
-ARG OPEN_JDK_MD5='9d711fdeb9176a96bae0ba276f3f3695'
+ARG ANDROID_COMPILE_SDK='30'
+ARG ANDROID_BUILD_TOOLS='30.0.2'
+ARG ANDROID_SDK_TOOLS='7302050'
+ARG OPEN_JDK_DOWNLOAD_URL='https://corretto.aws/downloads/resources/11.0.12.7.1/amazon-corretto-11.0.12.7.1-linux-x64.tar.gz'
+ARG OPEN_JDK_MD5='55e5ca4565737598ff24c6d927253275'
 
 ENV LANG='en_US.UTF-8'
 ENV LANGUAGE='en_US:en'
 ENV JAVA_HOME=/opt/java/openjdk
-ENV JRE_HOME=/opt/java/openjdk/jre
 ENV ANDROID_HOME=/opt/android-sdk-linux
-ENV PATH="/opt/android-sdk-linux/tools:/opt/android-sdk-linux/platform-tools:/opt/android-sdk-linux/tools/bin:/opt/java/openjdk/bin:$PATH"
+ENV PATH="/opt/android-sdk-linux/cmdline-tools:/opt/android-sdk-linux/platform-tools:/opt/android-sdk-linux/cmdline-tools/bin:/opt/java/openjdk/bin:$PATH"
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
@@ -37,10 +36,10 @@ RUN set -eux; \
     chown -R root:root /opt/java; \
     rm -rf /tmp/openjdk.tar.gz; \
     \
-    update-alternatives --install /usr/bin/java java ${JRE_HOME}/bin/java 1 \
-    && update-alternatives --set java ${JRE_HOME}/bin/java \
-    && update-alternatives --install /usr/bin/javac javac ${JRE_HOME}/../bin/javac 1 \
-    && update-alternatives --set javac ${JRE_HOME}/../bin/javac
+    update-alternatives --install /usr/bin/java java ${JAVA_HOME}/bin/java 1 \
+    && update-alternatives --set java ${JAVA_HOME}/bin/java \
+    && update-alternatives --install /usr/bin/javac javac ${JAVA_HOME}/bin/javac 1 \
+    && update-alternatives --set javac ${JAVA_HOME}/bin/javac
 
 # Install Android SDK
 RUN curl -L https://dl.google.com/android/repository/commandlinetools-linux-${ANDROID_SDK_TOOLS}_latest.zip > /tmp/android-sdk-linux.zip \
