@@ -9,8 +9,8 @@ ARG OPEN_JDK_MD5='55e5ca4565737598ff24c6d927253275'
 ENV LANG='en_US.UTF-8'
 ENV LANGUAGE='en_US:en'
 ENV JAVA_HOME=/opt/java/openjdk
-ENV ANDROID_HOME=/opt/android-sdk-linux
-ENV PATH="/opt/android-sdk-linux/cmdline-tools:/opt/android-sdk-linux/platform-tools:/opt/android-sdk-linux/cmdline-tools/bin:/opt/java/openjdk/bin:$PATH"
+ENV ANDROID_SDK_ROOT=/opt
+ENV PATH="/opt/cmdline-tools/tools/bin:/opt/platform-tools:/opt/java/openjdk/bin:$PATH"
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
@@ -43,13 +43,13 @@ RUN set -eux; \
 
 # Install Android SDK
 RUN curl -L https://dl.google.com/android/repository/commandlinetools-linux-${ANDROID_SDK_TOOLS}_latest.zip > /tmp/android-sdk-linux.zip \
-    && unzip /tmp/android-sdk-linux.zip -d /opt/android-sdk-linux/ \
+    && unzip -q /tmp/android-sdk-linux.zip -d ${ANDROID_SDK_ROOT}/cmdline-tools/ \
     && rm /tmp/android-sdk-linux.zip \
+    && mv ${ANDROID_SDK_ROOT}/cmdline-tools/cmdline-tools ${ANDROID_SDK_ROOT}/cmdline-tools/tools \
     \
-    && yes | sdkmanager --no_https --licenses --sdk_root=${ANDROID_HOME} \
-    && sdkmanager --sdk_root=${ANDROID_HOME} --verbose tools platform-tools \
-      "platforms;android-${ANDROID_COMPILE_SDK}" \
-      "build-tools;${ANDROID_BUILD_TOOLS}" \
+    && yes | sdkmanager --no_https --licenses \
+    && sdkmanager platform-tools --verbose \
+        "platforms;android-${ANDROID_COMPILE_SDK}" \
+        "build-tools;${ANDROID_BUILD_TOOLS}" \
     \
-    && rm -r ${ANDROID_HOME}/emulator \
-    && unset ANDROID_NDK_HOME
+    && rm -r ${ANDROID_SDK_ROOT}/emulator
