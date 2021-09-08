@@ -36,20 +36,20 @@ RUN set -eux; \
     chown -R root:root /opt/java; \
     rm -rf /tmp/openjdk.tar.gz; \
     \
-    update-alternatives --install /usr/bin/java java ${JAVA_HOME}/bin/java 1 \
-    && update-alternatives --set java ${JAVA_HOME}/bin/java \
-    && update-alternatives --install /usr/bin/javac javac ${JAVA_HOME}/bin/javac 1 \
-    && update-alternatives --set javac ${JAVA_HOME}/bin/javac
+    update-alternatives --install /usr/bin/java java "${JAVA_HOME}/bin/java" 1 \
+    && update-alternatives --set java "${JAVA_HOME}/bin/java" \
+    && update-alternatives --install /usr/bin/javac javac "${JAVA_HOME}/bin/javac" 1 \
+    && update-alternatives --set javac "${JAVA_HOME}/bin/javac"
 
 # Install Android SDK
 RUN curl -L https://dl.google.com/android/repository/commandlinetools-linux-${ANDROID_SDK_TOOLS}_latest.zip > /tmp/android-sdk-linux.zip \
-    && unzip -q /tmp/android-sdk-linux.zip -d ${ANDROID_SDK_ROOT}/cmdline-tools/ \
+    && unzip -q /tmp/android-sdk-linux.zip -d "${ANDROID_SDK_ROOT}/cmdline-tools/" \
     && rm /tmp/android-sdk-linux.zip \
-    && mv ${ANDROID_SDK_ROOT}/cmdline-tools/cmdline-tools ${ANDROID_SDK_ROOT}/cmdline-tools/tools \
+    && mv "${ANDROID_SDK_ROOT}/cmdline-tools/cmdline-tools" "${ANDROID_SDK_ROOT}/cmdline-tools/tools" \
     \
     && yes | sdkmanager --no_https --licenses \
     && sdkmanager platform-tools --verbose \
         "platforms;android-${ANDROID_COMPILE_SDK}" \
         "build-tools;${ANDROID_BUILD_TOOLS}" \
     \
-    && rm -r ${ANDROID_SDK_ROOT}/emulator
+    && rm -r "${ANDROID_SDK_ROOT}/emulator"
