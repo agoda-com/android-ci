@@ -18,7 +18,7 @@ RUN gem install /tmp/stf.gem \
 
 # Install misc packages
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends \
+    && apt-get install -yq --no-install-recommends \
             python-pip \
             python-setuptools \
     \
