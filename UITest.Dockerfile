@@ -10,6 +10,7 @@ FROM $BUILD_IMAGE
 
 COPY --from=rubybuild $RUBY_PATH $RUBY_PATH
 
+# Install stf-client
 COPY stf-client-0.3.1.pre.rc.1.gem /tmp/stf.gem
 
 RUN gem install /tmp/stf.gem \
@@ -18,21 +19,21 @@ RUN gem install /tmp/stf.gem \
 
 # Install misc packages
 RUN apt-get update \
-    && apt-get install -yq --no-install-recommends \
-            python-pip \
-            python-setuptools \
+    && apt-get install -y --no-install-recommends \
+            python \
     \
-    pip install --upgrade pip && \
-    pip install PyYAML==3.12 && \
-    pip install pillow mock \
+    && curl -fsS https://bootstrap.pypa.io/pip/2.7/get-pip.py | python \
+    && pip install --upgrade pip && \
+    && pip install PyYAML==3.12 && \
+    && pip install pillow mock \
     \
     && rm -r /var/lib/apt/lists/*
 
+# Install Allure
 ENV PATH="/allure/bin:$PATH"
 ENV ALLURE_CONFIG="/allure-config/allure.properties"
 ENV ALLURE_NO_ANALYTICS=1
 
-# Install Allure
 RUN mkdir /allure \
     && mkdir /allure-config \
     && curl -sSL https://repo.maven.apache.org/maven2/io/qameta/allure/allure-commandline/2.8.1/allure-commandline-2.8.1.tgz -o allure-commandline.tgz \
