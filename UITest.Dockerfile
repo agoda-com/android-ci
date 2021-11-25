@@ -24,7 +24,6 @@ RUN apt-get update \
     \
     && curl -fsS https://bootstrap.pypa.io/pip/2.7/get-pip.py | python \
     && pip install --upgrade pip \
-    && pip install PyYAML==3.12 \
     && pip install pillow mock \
     \
     && rm -r /var/lib/apt/lists/*
