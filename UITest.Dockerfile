@@ -16,6 +16,18 @@ RUN gem install /tmp/stf.gem \
     && rm -f /tmp/stf.gem \
     && gem update --system
 
+# Install misc packages
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+            python-pip \
+            python-setuptools \
+    \
+    pip install --upgrade pip && \
+    pip install PyYAML==3.12 && \
+    pip install pillow mock \
+    \
+    && rm -r /var/lib/apt/lists/*
+
 ENV PATH="/allure/bin:$PATH"
 ENV ALLURE_CONFIG="/allure-config/allure.properties"
 ENV ALLURE_NO_ANALYTICS=1
