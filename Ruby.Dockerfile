@@ -19,6 +19,7 @@ RUN gem install --no-document \
             executable-hooks \
             liquid-cli:0.0.1  \
             octokit \
+            gitlab \
     && gem update --system
 
 # Install codecoach
