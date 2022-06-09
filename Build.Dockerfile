@@ -19,6 +19,7 @@ RUN apt-get update \
             git \
             git-extras \
             unzip \
+            fontconfig \
     \
     && curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | bash \
     && apt-get install -yq --no-install-recommends git-lfs \
