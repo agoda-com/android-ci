@@ -19,7 +19,7 @@ RUN apt-get update \
             git \
             git-extras \
             unzip \
-            fontconfig
+            fontconfig \
     \
     && curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | bash \
     && apt-get install -yq --no-install-recommends git-lfs \
@@ -54,5 +54,3 @@ RUN curl -L https://dl.google.com/android/repository/commandlinetools-linux-${AN
         "build-tools;${ANDROID_BUILD_TOOLS}" \
     \
     && rm -r "${ANDROID_SDK_ROOT}/emulator"
-
-
