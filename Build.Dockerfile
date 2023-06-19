@@ -3,8 +3,8 @@ FROM ubuntu:18.04
 ARG ANDROID_COMPILE_SDK='30'
 ARG ANDROID_BUILD_TOOLS='30.0.2'
 ARG ANDROID_SDK_TOOLS='7302050'
-ARG OPEN_JDK_DOWNLOAD_URL='https://corretto.aws/downloads/resources/11.0.12.7.1/amazon-corretto-11.0.12.7.1-linux-x64.tar.gz'
-ARG OPEN_JDK_MD5='55e5ca4565737598ff24c6d927253275'
+ARG OPEN_JDK_DOWNLOAD_URL='https://corretto.aws/downloads/resources/17.0.7.7.1/amazon-corretto-17.0.7.7.1-linux-x64.tar.gz'
+ARG OPEN_JDK_MD5='443750a02c28ff2807c80032ee2e8ebc'
 
 ENV LANG='en_US.UTF-8'
 ENV LANGUAGE='en_US:en'
